@@ -2,6 +2,7 @@
   "name": "insomnia-plugin-fast-weigh",
   "version": "0.0.1",
   "private": false,
+  "author": "Eric Wilhite",
   "insomnia": {
     "name": "fast-weigh",
     "description": "Fast-Weigh Plugin"
