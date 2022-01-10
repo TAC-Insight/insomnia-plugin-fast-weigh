@@ -1,11 +1,22 @@
 {
   "name": "insomnia-plugin-fast-weigh",
   "version": "0.0.1",
-  "private": false,
   "author": "Eric Wilhite",
   "insomnia": {
     "name": "fast-weigh",
-    "description": "Fast-Weigh Plugin"
+    "displayName": "Fast-Weigh Reporting",
+    "description": "Format GraphQL queries for use in reporting tools.",
+    "images": {
+      "icon": "Icon.png"
+    }
   },
+  "keywords": [
+    "graphql",
+    "reporting",
+    "fast-weigh",
+    "fast",
+    "weigh",
+    "plugin"
+  ],
   "main": "main.js"
 }
