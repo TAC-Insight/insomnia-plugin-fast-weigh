@@ -8,9 +8,9 @@ module.exports.requestActions = [
       const { request } = data;
       let body = JSON.parse(request.body.text);
       let telerikBody = {};
-      let variables = {};
+      let variables = [];
       telerikBody.query = body.query;
-      telerikBody.variables = [];
+      telerikBody.variables = {};
 
       if (typeof body.variables !== "undefined") {
         // map over variables and create @params
