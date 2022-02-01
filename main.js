@@ -16,37 +16,46 @@ module.exports.requestActions = [
         // map over variables and create @params
         Object.keys(body.variables).forEach((key) => {
           const telerikParam = "@" + key;
+          // set object to push to variables array
+          let telerikParamObj = {};
+          telerikParamObj[telerikParam] = body.variables[key];
+          // add the variable to telerikBody
           telerikBody.variables[key] = telerikParam;
 
           // push variable type to variables array
           if (Array.isArray(body.variables[key])) {
             // typeof array
-            variables.push({ telerikParam: "array" });
+            telerikParamObj[telerikParam] = "array";
+            variables.push(telerikParamObj);
           } else {
-            variables.push({ telerikParam: typeof body.variables[key] });
+            telerikParamObj[telerikParam] = typeof body.variables[key];
+            variables.push(telerikParamObj);
           }
         });
       }
 
-      telerikJsonBody = JSON.stringify(telerikBody, null, 2);
+      let telerikJsonBody = JSON.stringify(telerikBody, null, 2);
 
       // strip quotes from array parameters and int/float parameters
+      console.log(variables);
       variables.forEach((variable) => {
-        if (variable.telerikParam === "array") {
+        key = Object.keys(variable)[0];
+        console.log("key: " + key);
+        console.log("key value: " + variable[key]);
+        if (variable[key] === "array") {
+          console.log("Replacing array: " + key);
           telerikJsonBody = telerikJsonBody.replace(
-            '"@' + variable.telerikParam + '"',
-            "[" + "@" + variable.telerikParam + "]"
+            '"' + key + '"',
+            "[" + key + "]"
           );
+          console.log("telerikJsonBody: " + telerikJsonBody);
         } else if (
-          variable.telerikParam === "number" ||
-          variable.telerikParam === "bigint" ||
-          variable.telerikParam === "undefined" ||
-          variable.telerikParam === "boolean"
+          variable[key] === "number" ||
+          variable[key] === "bigint" ||
+          variable[key] === "undefined" ||
+          variable[key] === "boolean"
         ) {
-          telerikJsonBody = telerikJsonBody.replace(
-            '"@' + variable.telerikParam + '"',
-            "@" + variable.telerikParam
-          );
+          telerikJsonBody = telerikJsonBody.replace('"' + key + '"', key);
         }
       });
 

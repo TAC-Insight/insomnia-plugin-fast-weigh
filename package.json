@@ -1,6 +1,6 @@
 {
   "name": "insomnia-plugin-fast-weigh",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "author": "Eric Wilhite",
   "insomnia": {
     "name": "fast-weigh",
